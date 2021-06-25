@@ -1,0 +1,9 @@
+<a [routerLink]="['profile']">Profile</a> &nbsp;
+<a [routerLink]="['weather']">Weather</a>
+
+<div style="margin: 20px 0">
+  <button *ngIf="!loggedIn" (click)="login()">Login</button>
+  <button *ngIf="loggedIn" (click)="logout()">Logout</button>
+</div>
+
+<router-outlet></router-outlet>

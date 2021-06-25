@@ -1,0 +1,8 @@
+<div>
+  <h1>Weather Forecast</h1>
+
+  <div *ngFor="let weatherForecast of weatherForecasts$ | async">
+    {{ weatherForecast.date | date: "dd.MM.yyyy" }}: &nbsp;
+    {{ weatherForecast.temperatureC }}°
+  </div>
+</div>
