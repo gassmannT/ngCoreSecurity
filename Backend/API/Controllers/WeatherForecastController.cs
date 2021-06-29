@@ -28,13 +28,12 @@ namespace ngCoreSecurity.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult<IEnumerable<WeatherForecast>> Get()
         {
-            HttpContext.VerifyUserHasAnyAcceptedScope("Data.Read");
+            //HttpContext.VerifyUserHasAnyAcceptedScope("Data.Read");
 
-            if(User.IsInRole("WeatherReader"))
-            {
+            //if(User.IsInRole("WeatherReader"))
+            //{
                 var rng = new Random();
                 var list = Enumerable.Range(1, 10).Select(index => new WeatherForecast
                 {
@@ -45,10 +44,10 @@ namespace ngCoreSecurity.Controllers
                 })
                 .ToArray();
                 return Ok(list);
-            } else
-            {
-                return Unauthorized("The User is unauthorized");
-            }
+            //} else
+            //{
+            //    return Unauthorized("The User is unauthorized");
+            //}
 
 
             
