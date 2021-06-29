@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'protected',
     component: ProtectedComponent,
-    canActivate: [AutoLoginGuard],
+    // canActivate: [AutoLoginGuard],
   },
   { path: 'unauthorized', component: UnauthorizedComponent },
 ];

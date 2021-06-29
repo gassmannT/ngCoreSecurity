@@ -9,13 +9,11 @@ import {
 export function loadConfig(oidcConfigService: OidcConfigService) {
   return () =>
     oidcConfigService.withConfig({
-      stsServer:
-        'https://login.microsoftonline.com/d3450f80-7150-46aa-bfab-194c2ff90391/v2.0',
+      stsServer: 'https://login.microsoftonline.com/<TENANTID>/v2.0',
       authWellknownEndpoint: 'https://login.microsoftonline.com/common/v2.0',
       redirectUrl: window.location.origin,
-      clientId: 'c9606843-9a7e-4eab-b550-46037161d570',
-      scope:
-        'openid profile offline_access email api://a91d1509-4e6a-4dda-b3b2-4264ce77a931/Data.Read api://a91d1509-4e6a-4dda-b3b2-4264ce77a931/Data.ReadWrite',
+      clientId: '<ClientID>',
+      scope: 'openid profile offline_access email <SCOPES>',
       responseType: 'code',
       silentRenew: true,
       useRefreshToken: true,
