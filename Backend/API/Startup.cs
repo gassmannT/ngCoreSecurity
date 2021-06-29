@@ -11,6 +11,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 
 namespace ngCoreSecurity
 {
@@ -27,7 +31,30 @@ namespace ngCoreSecurity
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            //services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+            services.AddMicrosoftIdentityWebApiAuthentication(Configuration);
+
+
+            //services.AddMicrosoftIdentityWebApiAuthentication(Configuration)
+            //     .EnableTokenAcquisitionToCallDownstreamApi()
+            //     .AddInMemoryTokenCaches();
+
+            //services.AddControllers(options =>
+            //{
+            //    var policy = new AuthorizationPolicyBuilder()
+            //        .RequireAuthenticatedUser()
+            //        .Build();
+            //    options.Filters.Add(new AuthorizeFilter(policy));
+            //});
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("ValidateAccessTokenPolicy", validateAccessTokenPolicy =>
+            //    {
+            //        validateAccessTokenPolicy.RequireRole("WeatherReader");
+            //    });
+            //});
+
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -56,7 +83,7 @@ namespace ngCoreSecurity
 
             app.UseRouting();
 
-            // app.UseAuthentication();
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -1,28 +1,38 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
-import { WeatherComponent } from './weather/weather.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AuthConfigModule } from './auth/auth-config.module';
+import { AuthConfigModule } from './auth-config.module';
+import { AuthInterceptor } from './shared/services/auth.interceptor';
+import { HomeComponent } from './home/home.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
+import { ProtectedComponent } from './protected/protected.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
-    WeatherComponent,
+    NavMenuComponent,
+    HomeComponent,
     UnauthorizedComponent,
+    ProtectedComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     AuthConfigModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,0 +1,13 @@
+<div>
+  <h2>Weather Forecast</h2>
+
+  <div
+    *ngFor="let weatherForecast of weatherForecasts$ | async; let first = first"
+  >
+    <div *ngIf="first" style="font-weight: bold">
+      {{ weatherForecast.city }} <br />
+    </div>
+    {{ weatherForecast.date | date: "dd.MM.yyyy" }}: &nbsp;
+    {{ weatherForecast.temperatureC }}°
+  </div>
+</div>

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  template: ` <div>unauthorized</div> `,
+  selector: 'app-unauthorized',
+  templateUrl: './unauthorized.component.html',
 })
 export class UnauthorizedComponent implements OnInit {
   constructor() {}

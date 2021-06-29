@@ -1,29 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnDestroy, OnInit } from '@angular/core';
 import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  templateUrl: 'app.component.html',
 })
-export class AppComponent implements OnInit {
-  loggedIn = false;
-
-  constructor(private oidcSecurityService: OidcSecurityService) {}
+export class AppComponent implements OnInit, OnDestroy {
+  constructor(public oidcSecurityService: OidcSecurityService) {}
 
   ngOnInit() {
-    this.oidcSecurityService.checkAuth().subscribe((auth) => {
-      console.log('is authenticated', auth);
-      this.loggedIn = auth;
-    });
+    this.oidcSecurityService
+      .checkAuth()
+      .subscribe((isAuthenticated) =>
+        console.log('app authenticated', isAuthenticated)
+      );
   }
 
-  login() {
-    console.log('login');
-    this.oidcSecurityService.authorize();
-  }
-
-  logout() {
-    console.log('logout');
-    this.oidcSecurityService.logoff();
-  }
+  ngOnDestroy(): void {}
 }

@@ -1,25 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ProfileComponent } from './profile/profile.component';
-import { AuthorizationGuard } from './shared/services/authorization.guard';
+import { RouterModule, Routes } from '@angular/router';
+import { AutoLoginGuard } from 'angular-auth-oidc-client';
+import { HomeComponent } from './home/home.component';
+import { ProtectedComponent } from './protected/protected.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import { WeatherComponent } from './weather/weather.component';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'home' },
+  { path: 'home', component: HomeComponent },
   {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AuthorizationGuard],
+    path: 'protected',
+    component: ProtectedComponent,
+    canActivate: [AutoLoginGuard],
   },
-  {
-    path: 'weather',
-    component: WeatherComponent,
-    canActivate: [AuthorizationGuard],
-  },
-  {
-    path: 'unauthorized',
-    component: UnauthorizedComponent,
-  },
+  { path: 'unauthorized', component: UnauthorizedComponent },
 ];
 
 @NgModule({
