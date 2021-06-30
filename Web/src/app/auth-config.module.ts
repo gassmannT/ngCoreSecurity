@@ -21,7 +21,7 @@ export function loadConfig(oidcConfigService: OidcConfigService) {
       useRefreshToken: true,
       ignoreNonceAfterRefresh: true,
       maxIdTokenIatOffsetAllowedInSeconds: 600,
-      issValidationOff: false, // this needs to be true if using a common endpoint in Azure
+      issValidationOff: true, // this needs to be true if using a common endpoint in Azure
       autoUserinfo: false,
       logLevel: LogLevel.Debug,
       customParams: {
