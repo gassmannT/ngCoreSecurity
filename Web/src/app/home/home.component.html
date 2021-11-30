@@ -1,9 +1,9 @@
 <h2>Welcome</h2>
 
 <div style="margin-top: 25px; margin-bottom: 10px">
-  Is Authenticated: {{ isAuthenticated$ | async }}<br />
+  Is Authenticated: {{ isAuthenticated }}<br />
 </div>
 <div>
   UserData:
-  <pre>{{ userData$ | async | json }}</pre>
+  <pre>{{ (userData$ | async)?.userData | json }}</pre>
 </div>

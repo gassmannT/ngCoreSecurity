@@ -8,12 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class HomeComponent implements OnInit {
   userData$: Observable<any>;
-  isAuthenticated$: Observable<boolean>;
+  isAuthenticated: boolean;
 
   constructor(public oidcSecurityService: OidcSecurityService) {}
 
   ngOnInit() {
-    this.isAuthenticated$ = this.oidcSecurityService.isAuthenticated$;
+    this.oidcSecurityService.isAuthenticated$.subscribe(
+      ({ isAuthenticated, allConfigsAuthenticated }) => {
+        console.log(isAuthenticated, allConfigsAuthenticated);
+        this.isAuthenticated = isAuthenticated;
+      }
+    );
+
     this.userData$ = this.oidcSecurityService.userData$;
   }
 }

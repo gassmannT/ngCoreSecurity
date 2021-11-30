@@ -38,7 +38,7 @@ namespace ngCoreSecurity.Controllers
                 var rng = new Random();
                 var list = Enumerable.Range(1, 10).Select(index => new WeatherForecast
                 {
-                    City = "Nürnberg",
+                    City = "Hamburg",
                     Date = DateTime.Now.AddDays(index),
                     TemperatureC = rng.Next(-20, 55),
                     Summary = Summaries[rng.Next(Summaries.Length)]
